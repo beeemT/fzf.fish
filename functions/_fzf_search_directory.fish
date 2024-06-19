@@ -2,7 +2,12 @@ function _fzf_search_directory --description "Search the current directory. Repl
     # Directly use fd binary to avoid output buffering delay caused by a fd alias, if any.
     # Debian-based distros install fd as fdfind and the fd package is something else, so
     # check for fdfind first. Fall back to "fd" for a clear error message.
-    set -f fd_cmd (command -v fdfind || command -v fd  || echo "fd")
+    if set --query fzf_find_cmd
+        set -f fd_cmd $fzf_find_cmd
+    else
+        set -f fd_cmd (command -v fdfind || command -v fd  || echo "fd")
+    end
+
     set -f --append fd_cmd --color=always $fzf_fd_opts
 
     set -f fzf_arguments --multi --ansi $fzf_directory_opts

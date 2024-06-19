@@ -152,7 +152,13 @@ And to use your own file preview command, set it in `fzf_preview_file_cmd`:
 set fzf_preview_file_cmd cat -n
 ```
 
-Omit the target path for both variables as `fzf.fish` will itself [specify the argument to preview](functions/_fzf_preview_file.fish).
+You can also use a custom search command (default is find):
+
+```fish
+set fzf_find_cmd /usr/bin/fd
+```
+
+Omit the target path for the variables as `fzf.fish` will itself [specify the argument to preview](functions/_fzf_preview_file.fish).
 
 ### Change what files are listed by Search Directory
 
